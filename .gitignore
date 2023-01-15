@@ -1,0 +1,14 @@
+DS_Store
+
+xcuserdata/
+!*.xcworkspace/contents.xcworkspacedata
+
+*.xcscmblueprint
+*.xccheckout
+
+build/
+DerivedData/
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace

@@ -15,16 +15,17 @@ final class LocatonManager: NSObject, ObservableObject, CLLocationManagerDelegat
     
     override init() {
         super.init()
-        manager.delegate = self
+//        manager.delegate = self
     }
 
     func requestLocation() {
         isLoading = true
-        manager.requestLocation()
+//        manager.requestLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first?.coordinate
+//        location = locations.first?.coordinate
+        location = CLLocationCoordinate2D(latitude: CLLocationDegrees(41.1), longitude: CLLocationDegrees(41.1))
         isLoading = false
     }
     

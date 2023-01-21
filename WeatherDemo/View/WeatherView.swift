@@ -66,16 +66,6 @@ struct WeatherView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Weather now")
                         .bold().padding(.bottom)
-                    HStack {
-                        WeatherRow(logo: "thermometer", name: "Min temp", value: (weather.currentWeather?.temperature?.roundDouble() ?? "") + "°") // TMP mock data
-                        Spacer()
-                        WeatherRow(logo: "thermometer", name: "Max temp", value: (weather.currentWeather?.temperature?.roundDouble() ?? "") + "°") // TMP mock data
-                    }
-                    HStack {
-                        WeatherRow(logo: "wind", name: "Wind speed", value: (weather.currentWeather?.windspeed?.roundDouble() ?? "") + "m/s") // TMP mock data
-                        Spacer()
-                        WeatherRow(logo: "humidity", name: "Humidity", value: "%") // TMP mock data
-                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -88,7 +78,7 @@ struct WeatherView: View {
         }
         
         .edgesIgnoringSafeArea(.bottom)
-        .background(.blue)
+        .background(.blue) //
         .preferredColorScheme(.dark)
     }
 }

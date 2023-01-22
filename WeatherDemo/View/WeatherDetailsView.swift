@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct WeatherDetailsView: View {
+    var weather: WeatherEntity
+    let style: Style = .purple
+    
     var body: some View {
+        let weatherData = DailyWeatherMapper(weatherEntity: weather)
+        let todaysData = weatherData.getTodaysWeather()
+        
         ZStack {
-            getBackgroundFor(.purple)
+            getBackgroundFor(style)
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: -15) {
                         ImageTextWidget(
-                            logo: "sun.max",
-                            value: "Sunny")
-                        BigHeaderWidget(header: "17°")
+                            logo: todaysData.status.logo,
+                            value: todaysData.status.value)
+                        BigHeaderWidget(header: todaysData.temperature)
                     }
 
                     VStack(alignment: .leading) {
@@ -26,13 +32,13 @@ struct WeatherDetailsView: View {
                             value: "Bydgoszcz")
                         ImageTextWidget(
                             logo: "wind",
-                            value: "13 mph")
+                            value: todaysData.wind)
                         ImageTextWidget(
                             logo: "thermometer.snowflake", 
-                            value: "10°")
+                            value: todaysData.minTemperature)
                         ImageTextWidget(
                             logo: "thermometer.sun",
-                            value: "16°")
+                            value: todaysData.maxTemperature)
                     }
                 }.padding()
 
@@ -42,25 +48,24 @@ struct WeatherDetailsView: View {
                 VStack {
                     VStack(spacing: 20) {
                         HStack {
-                            ButtonWidget(text: "Today",
-                                         handler: { print("today")})
+                            // TODO: 
+//                            ButtonWidget(text: "Today",
+//                                         handler: { print("today")})
                             Spacer()
                             ButtonWidget(text: "7 days",
                                          handler: { print("7 days")})
                         }
-                        HStack(spacing: 20) {
-                            DailyWeatherWidget(name: "TUE",
-                                               logo: "sun.max.fill",
-                                               value: "35")
-                            DailyWeatherWidget(name: "WED",
-                                               logo: "cloud.sun.fill",
-                                               value: "17")
-                            DailyWeatherWidget(name: "SAT",
-                                               logo: "wind.snow",
-                                               value: "24")
-                            DailyWeatherWidget(name: "SUn",
-                                               logo: "wind.snow",
-                                               value: "24")
+                        .padding(.bottom, -14)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                let weekData = weatherData.getWeeklyWeather()
+                                ForEach(0 ..< weekData.count) { value in
+                                    DailyWeatherWidget(name: weekData[value].name,
+                                                       logo: weekData[value].logo,
+                                                       value: weekData[value].value,
+                                                       style: style)
+                                }
+                            }
                         }
                     }
                     .padding()
@@ -73,19 +78,23 @@ struct WeatherDetailsView: View {
     }
 }
 
-enum Style {
-    case purple
-}
-
 func getBackgroundFor(_ style: Style) -> some View {
-    return LinearGradient(gradient: Gradient(colors: [.purple, Color("darkPurple")]),
-                          startPoint: .top,
-                          endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all)
+    switch style {
+    case .purple:
+        return LinearGradient(gradient: Gradient(colors: [.purple, Color("darkPurple")]),
+                              startPoint: .top,
+                              endPoint: .bottomTrailing)
+            .edgesIgnoringSafeArea(.all)
+    case .blue:
+        return LinearGradient(gradient: Gradient(colors: [.blue, .white]),
+                              startPoint: .top,
+                              endPoint: .bottomTrailing)
+            .edgesIgnoringSafeArea(.all)
+    }
 }
 
 struct WeatherDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherDetailsView()
+        WeatherDetailsView(weather: previewWeather)
     }
 }

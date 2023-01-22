@@ -11,6 +11,7 @@ struct DailyWeatherWidget: View {
     var name: String
     var logo: String
     var value: String
+    var style: Style
     
     var body: some View {
         VStack(spacing: 2) {
@@ -28,8 +29,18 @@ struct DailyWeatherWidget: View {
                 .foregroundColor(.white)
         }
         .padding()
-        .background(Color("transparentPurple"))
+        .background(getBgColor(style: style))
         .cornerRadius(20)
+    }
+    
+    func getBgColor(style: Style) -> Color {
+        switch style {
+        case .purple:
+            return Color("transparentPurple")
+        case .blue:
+            return .blue
+            
+        }
     }
 }
 
@@ -37,7 +48,8 @@ struct DailyWeatherWidget_Previews: PreviewProvider {
     static var previews: some View {
         DailyWeatherWidget(name: "Now",
                            logo: "cloud.sun.fill",
-                           value: "8")
+                           value: "8",
+                           style: .purple)
         .background(.black)
     }
 }

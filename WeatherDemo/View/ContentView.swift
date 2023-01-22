@@ -6,39 +6,31 @@
 //
 
 import SwiftUI
+import CoreLocation //remove
 
 struct ContentView: View {
     @StateObject var locationManager = LocatonManager()
     var weatherManager = WeatherService()
-    @State var weather: ResponseBody?
+    @State var weather: WeatherEntity?
     
     var body: some View {
-//        VStack {
-//            if let location = locationManager.location {
-//                if let weather = weather {
-//                    WeatherView(weather: weather)
-//                } else {
-//                    LoadingView()
-//                        .task {
-//                            do {
-//                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-//                            } catch {
-//                                print("Error getting weather: \(error)")
-//                            }
-//                        }
-//                }
-//            } else {
-//                if locationManager.isLoading {
-//                    LoadingView()
-//                } else {
-//                    WelcomeView()
-//                        .environmentObject(locationManager)
-//                }
-//            }
-//        }
-//        .background(.blue)
-//        .preferredColorScheme(.dark)
-        WeatherDetailsView()
+        VStack {
+            if let weather = weather {
+                WeatherDetailsView(weather: weather)
+            } else {
+            let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(44.6), longitude: CLLocationDegrees(12.3))
+                
+            LoaderWidget()
+                .task {
+                    do {
+                        weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                    } catch {
+                        print("Error getting weather: \(error)")
+                    }
+                }
+            }
+        }
+        .background(.blue)
     }
 }
 

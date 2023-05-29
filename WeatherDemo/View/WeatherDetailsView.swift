@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WeatherDetailsView: View {
     var weather: WeatherEntity
-    let style: Style = .purple
+    let style: Style = .blue
     
     var body: some View {
         let weatherData = DailyWeatherMapper(weatherEntity: weather)
@@ -48,9 +48,8 @@ struct WeatherDetailsView: View {
                 VStack {
                     VStack(spacing: 20) {
                         HStack {
-                            // TODO: 
-//                            ButtonWidget(text: "Today",
-//                                         handler: { print("today")})
+                            ButtonWidget(text: "Today",
+                                         handler: { print("today")})
                             Spacer()
                             ButtonWidget(text: "7 days",
                                          handler: { print("7 days")})

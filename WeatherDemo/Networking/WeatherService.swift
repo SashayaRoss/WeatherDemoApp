@@ -30,36 +30,4 @@ final class WeatherService {
         
         return decodedData
     }
-    
-//    func requestWeatherData(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completion: @escaping (Result<Data, Swift.Error>) -> Void) {
-//        guard let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&current_weather=true") else {
-//            completion(.failure(Error.invalidUrl))
-//            return
-//        }
-//        let urlRequest = URLRequest(url: url)
-//
-//        session.dataTask(with: request) { data, response, error in
-//            DispatchQueue.main.async {
-//                if let error = error {
-//                    completion(.failure(Error.invalidData(error: error)))
-//                    return
-//                }
-//
-//                guard
-//                    let response = response as? HTTPURLResponse,
-//                    (200...299).contains(response.statusCode)
-//                else {
-//                    completion(.failure(Error.invalidResponse))
-//                    return
-//                }
-//
-//                guard let data = data else {
-//                    completion(.failure(Error.emptyResponse))
-//                    return
-//                }
-//
-//                completion(.success(data))
-//            }
-//        }.resume()
-//    }
 }

@@ -8,11 +8,9 @@ In the bottom widget: use buttons to either display temperature and weather icon
 
 Uses open-meteo api for data.
 
-## (WIP) App main view: 
-![Simulator Screen Shot - iPhone 12 Pro - 2023-01-21 at 22 07 32](https://user-images.githubusercontent.com/25226556/213887205-b0ea81fb-4e02-48bb-8f29-dd4cc26e1f96.png)
-(purple style)
-<img width="420" alt="Screenshot 2023-05-29 at 13 14 10" src="https://github.com/SashayaRoss/WeatherDemoApp/assets/25226556/f9daa101-6359-40b2-8d1b-8d490d04e487">
-(blue style)
+## (WIP) App main view:
+<img width="721" alt="Screenshot 2023-05-29 at 13 20 01" src="https://github.com/SashayaRoss/WeatherDemoApp/assets/25226556/98ec02db-c431-4eac-ae2f-14d8f1a9052d">
+
 
 ## Requirements
 * iOS 15+

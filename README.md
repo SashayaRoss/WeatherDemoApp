@@ -9,7 +9,8 @@ In the bottom widget: use buttons to either display temperature and weather icon
 Uses open-meteo api for data.
 
 ## (WIP) App main view:
-<img width="721" alt="Screenshot 2023-05-29 at 13 20 01" src="https://github.com/SashayaRoss/WeatherDemoApp/assets/25226556/98ec02db-c431-4eac-ae2f-14d8f1a9052d">
+
+<img width="721" alt="Screenshot 2023-05-29 at 13 20 01" src="https://github.com/SashayaRoss/WeatherDemoApp/assets/25226556/990c004c-7dbe-411f-8b34-04eafbb5458d">
 
 
 ## Requirements
